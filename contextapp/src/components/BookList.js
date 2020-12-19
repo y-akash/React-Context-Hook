@@ -9,19 +9,21 @@ class BookList extends Component {
     // so we use <ThemeContext.Consumer>
     // and inside that we provide function which take context as argument.
     // and also we return tha jsx in that function
-    <ThemeContext.Consumer> { (context)=>{
-      const { isLightTheme, light, dark } = this.context;
-      const theme = isLightTheme ? light : dark;
-      return ( 
-        <div className="book-list" style={{ color: theme.syntax, background: theme.bg }}>
-          <ul>
-            <li style={{ background: theme.ui }}>the way of kings</li>
-            <li style={{ background: theme.ui }}>the name of the wind</li>
-            <li style={{ background: theme.ui }}>the final empire</li>
-          </ul>
-        </div>
-      );
-    }}</ThemeContext.Consumer>
+    return(
+      <ThemeContext.Consumer>{(context) => {
+        const { isLightTheme, light, dark } = context;
+        const theme = isLightTheme ? light : dark;
+        return ( 
+          <div className="book-list" style={{ color: theme.syntax, background: theme.bg }}>
+            <ul>
+              <li style={{ background: theme.ui }}>the way of kings</li>
+              <li style={{ background: theme.ui }}>the name of the wind</li>
+              <li style={{ background: theme.ui }}>the final empire</li>
+            </ul>
+          </div>
+        );
+      }}</ThemeContext.Consumer>
+    );    
   }
 }
  
