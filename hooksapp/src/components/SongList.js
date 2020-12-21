@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// import uuid from 'uuid/v1';
+import {v4} from 'uuid';
+import NewSongForm from './NewSongForm';
 
 // Now, we can use state in functional component
 // with the help of useState() hook
@@ -18,12 +19,8 @@ const SongList = () => {
     { title: 'this wild darkness', id: 3 }
   ]);
 
-  //console.log(songs);
-  const addSong = () => {
-    // this function completely change/Replace the value instead of adding to current value
-    // so we are first spreading the songs and after that adding a new song
-    // uuid function generates a unique id we install it from npm
-    setSongs([...songs, { title: 'new song', id: 4 }]);
+  const addSong = (title) => {
+    setSongs([...songs, { title, id: v4() }]);
   };
 
   return (
@@ -33,7 +30,7 @@ const SongList = () => {
           return ( <li key={song.id}>{song.title}</li> );
         })}
       </ul>
-      <button onClick={addSong}>Add a song</button>
+      <NewSongForm addSong={addSong} />
     </div>
   );
 }
